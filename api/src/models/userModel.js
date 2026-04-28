@@ -7,3 +7,6 @@ export const getUsers = async () => {
     throw err
   }
 }
+if (!name || !email) {
+  return res.status(400).json({ error: 'Name e email são obrigatórios' })
+}
