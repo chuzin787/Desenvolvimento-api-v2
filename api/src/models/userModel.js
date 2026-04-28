@@ -1,14 +1,9 @@
-import { pool } from '../config/db.js'
-
 export const getUsers = async () => {
-  const result = await pool.query('SELECT * FROM users')
-  return result.rows
-}
-
-export const createUser = async (name, email) => {
-  const result = await pool.query(
-    'INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *',
-    [name, email]
-  )
-  return result.rows[0]
+  try {
+    const result = await pool.query('SELECT * FROM users')
+    return result.rows
+  } catch (err) {
+    console.error(err)
+    throw err
+  }
 }
